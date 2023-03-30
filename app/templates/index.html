@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <title>VahagGPT</title>
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+  </head>
+  <body>
+    <h1>VahagGPT</h1>
+    <form method="post" id="todo-form" >
+<!--      <label for="question">Enter your question:</label>-->
+      <input type="text" name="question" style="width: 800px; height: 20px" id="todo">
+      <button type="submit">Submit</button>
+<!--      <div>-->
+<!--      <label for="output">Output:</label>-->
+<!--      <input type="text" name="output" id="output" readonly>-->
+<!--      </div>-->
+    </form>
+    {% if answer %}
+        <p style=" white-space: pre-line; text-align: center; width: 50%; margin-top: 50px; margin-left: 50px">{{ answer }}</p>
+<!--        <p><strong>abc</strong></p>-->
+    {% endif %}
+  </body>
+<!--  don't post when refreshing-->
+  <script type="text/javascript">
+    $(document).on('submit','#todo-form',function(e)
+                   {
+      console.log('hello');
+      e.preventDefault();
+      $.ajax({
+        type:'POST',
+        url:'/',
+        data:{
+          todo:$("#todo").val()
+        },
+        success:function()
+        {
+          alert('saved');
+        }
+      })
+    });
+  </script>
+</html>
